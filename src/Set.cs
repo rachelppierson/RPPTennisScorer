@@ -16,7 +16,7 @@ namespace RPPTennisScorer
             CompletedGames = new List<Game>();
         }
 
-        public List<Game> CompletedGames { get; private set; }
+        public List<Game> CompletedGames { get; internal set; }
         public int GamesWonA => CompletedGames.Where(s => s.ScoreA > s.ScoreB).Count();
         public int GamesWonB => CompletedGames.Where(s => s.ScoreA < s.ScoreB).Count();
 
