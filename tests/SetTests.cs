@@ -42,6 +42,51 @@ namespace TennisTests
             Assert.Equal(_expected, _actual);
         }
 
+        [Fact]
+        public void CheckFortyAll()
+        {
+            //Setup
+            _setUnderTest.ScoreA = 3;
+            _setUnderTest.ScoreB = 3;
+            var _expected = "40-40";
+
+            //Act
+            var _actual = _setUnderTest.ToString();
+
+            //Assert
+            Assert.Equal(_expected, _actual);
+        }
+
+        [Fact]
+        public void CheckAdvantagePlayerA()
+        {
+            //Setup
+            _setUnderTest.ScoreB = ScoreMocks.RandomIntBetween(3, 100);
+            _setUnderTest.ScoreA = _setUnderTest.ScoreB + 1;
+            var _expected = "A-40";
+
+            //Act
+            var _actual = _setUnderTest.ToString();
+
+            //Assert
+            Assert.Equal(_expected, _actual);
+        }
+
+        [Fact]
+        public void CheckAdvantagePlayerB()
+        {
+            //Setup
+            _setUnderTest.ScoreA = ScoreMocks.RandomIntBetween(3, 100);
+            _setUnderTest.ScoreB = _setUnderTest.ScoreA + 1;
+            var _expected = "40-A";
+
+            //Act
+            var _actual = _setUnderTest.ToString();
+
+            //Assert
+            Assert.Equal(_expected, _actual);
+        }
+
         #endregion
 
         #region Set Complete Tests
