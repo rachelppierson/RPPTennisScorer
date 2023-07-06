@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TennisTests
 {
-    internal class NOTGameTests
+    internal class SetTests
     {
     }
 }

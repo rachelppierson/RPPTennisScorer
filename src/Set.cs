@@ -24,7 +24,7 @@ namespace RPPTennisScorer
         /// Indicates whether the Game is complete, based on the present score. True if complete. 
         /// </summary>
         public bool Complete =>
-            Math.Max(SetsWonA, SetsWonB) >= 6 && //One of the players must have won at least six games ("40" in tennis)
+            Math.Max(SetsWonA, SetsWonB) >= 6 && //One of the players must have won at least six games
             Math.Abs(SetsWonA - SetsWonB) >= 2;  //And one of them must lead by at least two points 
 
 
