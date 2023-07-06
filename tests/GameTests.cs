@@ -8,6 +8,7 @@ namespace TennisTests
     public class GameTests
     {
         readonly Game _gameUnderTest = new Game();
+        Player _currentServer = Player.A;
 
         public GameTests()
         {
@@ -23,7 +24,7 @@ namespace TennisTests
             var _expected = "0-0";
 
             //Act
-            var _actual = _gameUnderTest.ToString();
+            var _actual = _gameUnderTest.GetScore(_currentServer);
 
             //Assert
             Assert.Equal(_expected, _actual);
@@ -38,7 +39,23 @@ namespace TennisTests
             var _expected = "15-30";
 
             //Act
-            var _actual = _gameUnderTest.ToString();
+            var _actual = _gameUnderTest.GetScore(_currentServer);
+
+            //Assert
+            Assert.Equal(_expected, _actual);
+        }
+
+        [Fact]
+        public void CheckScoresAreReversedIfPlayerBPresentlyServing()
+        {
+            //Setup
+            _currentServer = Player.B;
+            _gameUnderTest.ScoreA = 1;
+            _gameUnderTest.ScoreB = 2;
+            var _expected = "30-15";
+
+            //Act
+            var _actual = _gameUnderTest.GetScore(_currentServer);
 
             //Assert
             Assert.Equal(_expected, _actual);
@@ -53,7 +70,7 @@ namespace TennisTests
             var _expected = "40-40";
 
             //Act
-            var _actual = _gameUnderTest.ToString();
+            var _actual = _gameUnderTest.GetScore(_currentServer);
 
             //Assert
             Assert.Equal(_expected, _actual);
@@ -68,7 +85,7 @@ namespace TennisTests
             var _expected = "A-40";
 
             //Act
-            var _actual = _gameUnderTest.ToString();
+            var _actual = _gameUnderTest.GetScore(_currentServer);
 
             //Assert
             Assert.Equal(_expected, _actual);
@@ -83,7 +100,7 @@ namespace TennisTests
             var _expected = "40-A";
 
             //Act
-            var _actual = _gameUnderTest.ToString();
+            var _actual = _gameUnderTest.GetScore(_currentServer);
 
             //Assert
             Assert.Equal(_expected, _actual);
@@ -108,10 +125,10 @@ namespace TennisTests
         }
 
         [Fact]
-        public void CheckFortyWinsIfLeadingByAtLeastTwoPoints()
+        public void CheckGamePointWinsIfLeadingByAtLeastTwoPoints()
         {
             //Setup
-            _gameUnderTest.ScoreA = (int)SetScore.Forty;
+            _gameUnderTest.ScoreA = (int)SetScore.Game;
             _gameUnderTest.ScoreB = _gameUnderTest.ScoreA - 2;
 
             //Act

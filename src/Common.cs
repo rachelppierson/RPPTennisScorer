@@ -10,6 +10,7 @@
             Fifteen,
             Thirty,
             Forty,
+            Game,
             Advantage
         }
     }

@@ -9,7 +9,9 @@ namespace RPPTennisScorer
 {
     internal class Set
     {
-        public Game CurrentGame = new Game();
+        public Game CurrentGame = new();
+
+        public Player CurrentServer => CompletedGames.Count % 2 == 0 ? Player.A : Player.B;
 
         public Set()
         {
@@ -43,7 +45,7 @@ namespace RPPTennisScorer
         public string CurrentGameDescription =>
             CurrentGame.ScoreA == 0 && CurrentGame.ScoreB == 0
             ? string.Empty
-            : CurrentGame.ToString();
+            : CurrentGame.GetScore(CurrentServer);
 
         public override string ToString() => $"{GamesWonDescription} {CurrentGameDescription}".Trim();
     }

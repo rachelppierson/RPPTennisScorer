@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TennisTests.Helpers;
 using TennisTests.Mocks;
+using static RPPTennisScorer.Common;
 
 namespace TennisTests
 {
