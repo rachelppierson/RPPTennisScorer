@@ -27,5 +27,14 @@ namespace TennisTests.Mocks
 
             return returnValue;
         }
+
+        /// <summary>
+        /// If the winning score in a Set is greater than 6, the losing score must be two less than whatever it is. Otherwise it can be any lesser number.
+        /// e.g., it's not possible to win 7-3, as you'd have already won upon reaching 6. This mock ensures that any losing score is consistent with these expectations.
+        /// </summary>
+        /// <param name="winningScore"></param>
+        /// <returns></returns>
+        internal static int GetLosingScoreFor(int winningScore) => winningScore > 6 ? winningScore - 2 : NumberHelpers.RandomIntBetween(0, winningScore - 2);
+
     }
 }

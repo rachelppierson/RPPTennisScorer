@@ -21,13 +21,13 @@ namespace TennisTests
         #region "No current game" tests
 
         [Fact]
-        public void CheckOutputIsCorrectIfPlayerAWinsSetAndNoSetIsOngoing()
+        public void CheckOutputIsCorrectIfPlayerAHasWonMoreGamesAndNoGameIsOngoing()
         {
             //Setup
             int PlayerAGamesWon = NumberHelpers.RandomIntBetween(6, 8); //Player A has won between 6 and 8 games
-            int PlayerBGamesWon = NumberHelpers.RandomIntBetween(2, PlayerAGamesWon - 2); //Player B has won at least two games fewer
+            int PlayerBGamesWon = SetScoreMocks.GetLosingScoreFor(PlayerAGamesWon); //Player B has won at least two games fewer, possibly even fewer depending on Player A's score
             _setUnderTest.CompletedGames = SetScoreMocks.MockCompletedGames(PlayerAGamesWon, PlayerBGamesWon);
-            string _expected = $"{PlayerAGamesWon}-{PlayerBGamesWon}";
+            string _expected = $"{PlayerAGamesWon}-{PlayerBGamesWon}"; //NB - no current game
 
             //Act
             var _actual = _setUnderTest.ToString();
