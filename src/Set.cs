@@ -11,7 +11,8 @@ namespace RPPTennisScorer
     {
         public Game CurrentGame = new();
 
-        public Player CurrentServer => CompletedGames.Count % 2 == 0 ? Player.A : Player.B;
+        //public Player CurrentServer => CompletedGames.Count % 2 == 0 ? Player.A : Player.B;
+        internal Player CurrentServer = Player.A;
 
         public Set()
         {

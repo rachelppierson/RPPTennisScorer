@@ -10,6 +10,7 @@ namespace RPPTennisScorer
     internal class Match
     {
         public Set CurrentSet = new Set();
+        public Player GetCurrentServer => (CompletedSets.SelectMany(s => s.CompletedGames).Count() + CurrentSet.CompletedGames.Count) % 2 == 0 ? Player.A : Player.B;
 
         public Match()
         {
@@ -21,12 +22,15 @@ namespace RPPTennisScorer
         public int SetsWonB => CompletedSets.Where(s => s.GamesWonA < s.GamesWonB).Count();
 
 
-        internal void AddPointForPlayer(Player player) { 
+        internal void AddPointForPlayer(Player player)
+        {
             CurrentSet.AddPointForPlayer(player);
             if (CurrentSet.Complete)
             {
                 CompletedSets.Add(CurrentSet);
-                CurrentSet = new Set();
+                //Player previousServer = CurrentSet.CurrentServer;
+                //CurrentSet = new Set() { CurrentServer = previousServer == Player.A ? Player.B : Player.A };
+                CurrentSet = new Set() { CurrentServer = GetCurrentServer };
             }
         }
 
@@ -40,7 +44,7 @@ namespace RPPTennisScorer
                     AddPointForPlayer(currentScoringPlayer);
                 else
                     throw new InvalidDataException("You passed a string that included an invalid character - on 'A' or 'B' permitted");
-            }                
+            }
         }
 
 
@@ -48,6 +52,9 @@ namespace RPPTennisScorer
 
         public override string ToString()
         {
+            Player currentServer = GetCurrentServer;
+            CurrentSet.CurrentServer = currentServer;
+            foreach (Set s in CompletedSets) s.CurrentServer = currentServer; //Updates all historical Sets to the current server.
             StringBuilder sb = new StringBuilder();
             foreach (Set s in CompletedSets) sb.Append($"{s.ToString()} ");
             sb.Append(CurrentSet.ToString());
