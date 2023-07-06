@@ -1,4 +1,5 @@
 using RPPTennisScorer;
+using TennisTests.Helpers;
 using TennisTests.Mocks;
 using static RPPTennisScorer.Common;
 
@@ -62,7 +63,7 @@ namespace TennisTests
         public void CheckAdvantagePlayerA()
         {
             //Setup
-            _gameUnderTest.ScoreB = ScoreMocks.RandomIntBetween(3, 100);
+            _gameUnderTest.ScoreB = NumberHelpers.RandomIntBetween(3, 100);
             _gameUnderTest.ScoreA = _gameUnderTest.ScoreB + 1;
             var _expected = "A-40";
 
@@ -77,7 +78,7 @@ namespace TennisTests
         public void CheckAdvantagePlayerB()
         {
             //Setup
-            _gameUnderTest.ScoreA = ScoreMocks.RandomIntBetween(3, 100);
+            _gameUnderTest.ScoreA = NumberHelpers.RandomIntBetween(3, 100);
             _gameUnderTest.ScoreB = _gameUnderTest.ScoreA + 1;
             var _expected = "40-A";
 
@@ -96,8 +97,8 @@ namespace TennisTests
         public void CheckThatSetIsNotCompleteWhenScoresAreTooLow()
         {
             //Setup
-            _gameUnderTest.ScoreA = ScoreMocks.RandomNonWinningScore();
-            _gameUnderTest.ScoreB = ScoreMocks.RandomNonWinningScore();
+            _gameUnderTest.ScoreA = GameScoreMocks.RandomNonWinningScore();
+            _gameUnderTest.ScoreB = GameScoreMocks.RandomNonWinningScore();
 
             //Act
             var _actual = _gameUnderTest.Complete;
@@ -124,7 +125,7 @@ namespace TennisTests
         public void CheckThatSetIsCompleteWhenPlayerAHasAWinningScoreAndLeadsByAtLeastTwoPoints()
         {
             //Setup
-            _gameUnderTest.ScoreA = ScoreMocks.PotentiallyWinningScore();
+            _gameUnderTest.ScoreA = GameScoreMocks.PotentiallyWinningScore();
             _gameUnderTest.ScoreB = _gameUnderTest.ScoreA - 2;
 
             //Act
@@ -138,8 +139,8 @@ namespace TennisTests
         public void CheckThatSetIsNotCompleteWhenPlayerAHasAtLeast40ButPlayerBIsAtMostOnePointBehind()
         {
             //Setup
-            _gameUnderTest.ScoreA = ScoreMocks.PotentiallyWinningScore();
-            _gameUnderTest.ScoreB = _gameUnderTest.ScoreA - ScoreMocks.RandomIntBetween(0, 1); //Player B is at most 1 point below
+            _gameUnderTest.ScoreA = GameScoreMocks.PotentiallyWinningScore();
+            _gameUnderTest.ScoreB = _gameUnderTest.ScoreA - NumberHelpers.RandomIntBetween(0, 1); //Player B is at most 1 point below
 
             //Act
             var _actual = _gameUnderTest.Complete;
@@ -152,8 +153,8 @@ namespace TennisTests
         public void CheckThatSetIsNotCompleteWhenPlayerBHasAtLeast40ButPlayerAIsAtMostOnePointBehind()
         {
             //Setup
-            _gameUnderTest.ScoreB = ScoreMocks.PotentiallyWinningScore();
-            _gameUnderTest.ScoreA = _gameUnderTest.ScoreB - ScoreMocks.RandomIntBetween(0, 1); //Player A is at most 1 point below
+            _gameUnderTest.ScoreB = GameScoreMocks.PotentiallyWinningScore();
+            _gameUnderTest.ScoreA = _gameUnderTest.ScoreB - NumberHelpers.RandomIntBetween(0, 1); //Player A is at most 1 point below
 
             //Act
             var _actual = _gameUnderTest.Complete;
