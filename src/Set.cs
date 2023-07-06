@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using static RPPTennisScorer.Common;
 
 namespace RPPTennisScorer
 {
     internal class Set
     {
-        internal enum Player { A, B }
-
         public int ScoreA { get; set; } //NB: 0 = Love, 1 = 15, 2 = 30, 3 = 40
         public int ScoreB { get; set; }
 
