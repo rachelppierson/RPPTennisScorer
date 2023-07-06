@@ -74,6 +74,35 @@ namespace TennisTests
             Assert.True(_actual);
         }
 
+        [Fact]
+        public void CheckThatSetIsNotCompleteWhenPlayerBIsAtMostOnePointBehind()
+        {
+            //Setup
+            _setUnderTest.ScoreA = ScoreMocks.PotentiallyWinningScore();
+            _setUnderTest.ScoreB = _setUnderTest.ScoreA - ScoreMocks.RandomIntBetween(0, 1); //Player B is at most 1 point below
+
+            //Act
+            var _actual = _setUnderTest.Complete();
+
+            //Assert
+            Assert.False(_actual);
+        }
+
+        [Fact]
+        public void CheckThatSetIsNotCompleteWhenPlayerAIsAtMostOnePointBehind()
+        {
+            //Setup
+            _setUnderTest.ScoreB = ScoreMocks.PotentiallyWinningScore();
+            _setUnderTest.ScoreA = _setUnderTest.ScoreB - ScoreMocks.RandomIntBetween(0, 1); //Player A is at most 1 point below
+
+            //Act
+            var _actual = _setUnderTest.Complete();
+
+            //Assert
+            Assert.False(_actual);
+        }
+
+
         #endregion
     }
 }
