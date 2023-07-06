@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RPPTennisScorer\RPPTennisScorer.csproj" />
+    <ProjectReference Include="..\src\RPPTennisScorer.csproj" />
   </ItemGroup>
 
 </Project>
