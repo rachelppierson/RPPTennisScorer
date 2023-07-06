@@ -1,5 +1,6 @@
 using RPPTennisScorer;
 using TennisTests.Mocks;
+using static RPPTennisScorer.Common;
 
 namespace TennisTests
 {
@@ -109,7 +110,7 @@ namespace TennisTests
         public void CheckFortyWinsIfLeadingByAtLeastTwoPoints()
         {
             //Setup
-            _setUnderTest.ScoreA = 3;
+            _setUnderTest.ScoreA = (int)SetScore.Forty;
             _setUnderTest.ScoreB = _setUnderTest.ScoreA - 2;
 
             //Act
