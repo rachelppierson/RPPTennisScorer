@@ -9,7 +9,7 @@ namespace TennisTests
 
         public SetTests()
         {
-            //NB: in xUnit, a new instance of this class is created for each test within. So you can effectively use Members and the Coinstructor as a re-usable Setup method.
+            //NB: in xUnit, a new instance of this class is created for each test within. So you can effectively use Members and the Constructor as a re-usable Setup method.
         }
 
         #region Scoring Tests
@@ -33,7 +33,7 @@ namespace TennisTests
             //Setup
             _setUnderTest.ScoreA = 1;
             _setUnderTest.ScoreB = 2;
-            var _expected = "1-2";
+            var _expected = "15-30";
 
             //Act
             var _actual = _setUnderTest.ToString();
@@ -61,7 +61,7 @@ namespace TennisTests
         }
 
         [Fact]
-        public void CheckThatSetIsCompleteWhenPlayerAHasAWinningScore()
+        public void CheckThatSetIsCompleteWhenPlayerAHasAWinningScoreAndLeadsByAtLeastTwoPoints()
         {
             //Setup
             _setUnderTest.ScoreA = ScoreMocks.PotentiallyWinningScore();
