@@ -31,13 +31,11 @@ namespace TennisTests
         public void BasicScoreCheck()
         {
             //Setup
-            var _scoreA = 1;
-            var _scoreB = 2;
+            _setUnderTest.ScoreA = 1;
+            _setUnderTest.ScoreB = 2;
             var _expected = "1-2";
 
             //Act
-            _setUnderTest.ScoreA = _scoreA;
-            _setUnderTest.ScoreB = _scoreB;
             var _actual = _setUnderTest.ToString();
 
             //Assert
@@ -52,14 +50,28 @@ namespace TennisTests
         public void CheckThatSetIsNotCompleteWhenScoresAreTooLow()
         {
             //Setup
-            var _scoreA = ScoreMocks.RandomNonWinningScore();
-            var _scoreB = ScoreMocks.RandomNonWinningScore();
+            _setUnderTest.ScoreA = ScoreMocks.RandomNonWinningScore();
+            _setUnderTest.ScoreB = ScoreMocks.RandomNonWinningScore();
 
             //Act
             var _actual = _setUnderTest.Complete();
 
             //Assert
             Assert.False(_actual);
+        }
+
+        [Fact]
+        public void CheckThatSetIsCompleteWhenPlayerAHasAWinningScore()
+        {
+            //Setup
+            _setUnderTest.ScoreA = ScoreMocks.PotentiallyWinningScore();
+            _setUnderTest.ScoreB = _setUnderTest.ScoreA - 2;
+
+            //Act
+            var _actual = _setUnderTest.Complete();
+
+            //Assert
+            Assert.True(_actual);
         }
 
         #endregion
