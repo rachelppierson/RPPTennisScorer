@@ -25,12 +25,12 @@ namespace RPPTennisScorer
 
         internal void ScoreMatch(string pointsString)
         {
-            Player currentScorringPlayer;
+            Player currentScoringPlayer;
 
             foreach (char c in pointsString)
             {
-                if (Enum.TryParse<Player>(c.ToString(), out currentScorringPlayer))
-                    AddPointForPlayer(currentScorringPlayer);
+                if (Enum.TryParse<Player>(c.ToString(), out currentScoringPlayer))
+                    AddPointForPlayer(currentScoringPlayer);
                 else
                     throw new InvalidDataException("You passed a string that included an invalid character - on 'A' or 'B' permitted");
             }                

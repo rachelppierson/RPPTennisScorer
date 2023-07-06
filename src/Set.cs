@@ -35,7 +35,7 @@ namespace RPPTennisScorer
             if (CurrentGame.Complete)
             {
                 CompletedGames.Add(CurrentGame);
-                CurrentGame = Complete ? null : new Game();
+                CurrentGame = new Game();
             }
         }
         public string GamesWonDescription => $"{GamesWonA}-{GamesWonB}";
