@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RPPTennisScorer": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\Rachel\\Documents\\Personal\\Job Hunting\\Tests\\2023-07-06 WeAreSpinks - Tracsis\\Source and Dest Files\\input.txt\" \r\n\"C:\\Users\\Rachel\\Documents\\Personal\\Job Hunting\\Tests\\2023-07-06 WeAreSpinks - Tracsis\\Source and Dest Files\\dest 001.txt\""
+    }
+  }
+}
