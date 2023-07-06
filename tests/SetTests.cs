@@ -106,6 +106,20 @@ namespace TennisTests
         }
 
         [Fact]
+        public void CheckFortyWinsIfLeadingByAtLeastTwoPoints()
+        {
+            //Setup
+            _setUnderTest.ScoreA = 3;
+            _setUnderTest.ScoreB = _setUnderTest.ScoreA - 2;
+
+            //Act
+            var _actual = _setUnderTest.Complete();
+
+            //Assert
+            Assert.True(_actual);
+        }
+
+        [Fact]
         public void CheckThatSetIsCompleteWhenPlayerAHasAWinningScoreAndLeadsByAtLeastTwoPoints()
         {
             //Setup
@@ -120,7 +134,7 @@ namespace TennisTests
         }
 
         [Fact]
-        public void CheckThatSetIsNotCompleteWhenPlayerBIsAtMostOnePointBehind()
+        public void CheckThatSetIsNotCompleteWhenPlayerAHasAtLeast40ButPlayerBIsAtMostOnePointBehind()
         {
             //Setup
             _setUnderTest.ScoreA = ScoreMocks.PotentiallyWinningScore();
@@ -134,7 +148,7 @@ namespace TennisTests
         }
 
         [Fact]
-        public void CheckThatSetIsNotCompleteWhenPlayerAIsAtMostOnePointBehind()
+        public void CheckThatSetIsNotCompleteWhenPlayerBHasAtLeast40ButPlayerAIsAtMostOnePointBehind()
         {
             //Setup
             _setUnderTest.ScoreB = ScoreMocks.PotentiallyWinningScore();

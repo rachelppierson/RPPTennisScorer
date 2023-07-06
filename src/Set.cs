@@ -20,8 +20,8 @@ namespace RPPTennisScorer
         /// </summary>
         /// <returns>Boolean value, true if the Set is complete</returns>
         public bool Complete() =>
-            Math.Max(ScoreA, ScoreB) >= 6 && //One of the players must have at least six points
-            Math.Abs(ScoreA - ScoreB) >= 2;  //And one of them must lead by at least two points
+            Math.Max(ScoreA, ScoreB) >= 3 && //One of the players must have at least three points ("40" in tennis)
+            Math.Abs(ScoreA - ScoreB) >= 2;  //And one of them must lead by at least two points 
 
         string ScoreDescription(Player player)
         {
