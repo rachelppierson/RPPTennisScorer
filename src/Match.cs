@@ -45,7 +45,6 @@ namespace RPPTennisScorer
             }
         }
 
-
         public string SetsWonDescription => $"{SetsWonA}-{SetsWonB}";
 
         public override string ToString()
@@ -60,6 +59,22 @@ namespace RPPTennisScorer
             }
             sb.Append(CurrentSet.ToString());
             return sb.ToString();
+        }
+
+        public void ParseMatchResultsFromFile(string source, string destination)
+        {
+            StringBuilder output = new();
+
+            using (StreamReader sr = File.OpenText(source))
+            {
+                string? nextScoreTxt;
+                while ((nextScoreTxt = sr.ReadLine()) != null)
+                {
+                    //do minimal amount of work here
+                }
+            }
+
+            File.WriteAllText(destination, output.ToString());
         }
     }
 }
