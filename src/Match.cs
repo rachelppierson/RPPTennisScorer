@@ -8,11 +8,13 @@ namespace RPPTennisScorer
 {
     internal class Match
     {
-        public List<Match> Matches { get; private set; }
+        public List<Set> CompletedGames { get; private set; }
+        //public int SetsWonA => CompletedGames.Where(s => s.ScoreA > s.ScoreB).Count();
+        //public int SetsWonB => CompletedGames.Where(s => s.ScoreA < s.ScoreB).Count();
 
         public Match()
         {
-            Matches = new List<Match>();
+            CompletedGames = new List<Set>();
         }
     }
 }

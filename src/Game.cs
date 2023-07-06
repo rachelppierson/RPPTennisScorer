@@ -1,18 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using static RPPTennisScorer.Common;
 
 namespace RPPTennisScorer
 {
     internal class Game
     {
-        public List<Set> Sets { get; private set; }
+        public int ScoreA { get; set; } //NB: 0 = Love, 1 = 15, 2 = 30, 3 = 40
+        public int ScoreB { get; set; }
 
-        public Game()
+        public override string ToString() => $"{ScoreDescription(Player.A)}-{ScoreDescription(Player.B)}"; 
+
+        /// <summary>
+        /// Indicates whether the Set is complete, based on the present score. True if complete. 
+        /// </summary>
+        public bool Complete =>
+            Math.Max(ScoreA, ScoreB) >= 3 && //One of the players must have at least three points ("40" in tennis)
+            Math.Abs(ScoreA - ScoreB) >= 2;  //And one of them must lead by at least two points 
+
+        string ScoreDescription(Player player)
         {
-            Sets = new List<Set>();
+            int playerScore;
+            int otherPlayerScore;
+
+            playerScore = player == Player.A ? ScoreA : ScoreB;
+            otherPlayerScore = player == Player.A ? ScoreB : ScoreA;
+
+            //Fallthrough possible scenarios...
+            if (playerScore == 0) return "0";
+            if (playerScore == 1) return "15";
+            if (playerScore == 2) return "30";
+            if (playerScore >= 3 && otherPlayerScore >= playerScore) return "40"; //Advatage, Other Player
+            return "A"; //Advatage, Player
         }
     }
 }
