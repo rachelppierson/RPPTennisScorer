@@ -8,9 +8,17 @@ namespace RPPTennisScorer
 {
     internal class Set
     {
-        public int ScoreA { get; set; }
+        public int ScoreA { get; set; } //NB: 0 = Love, 1 = 15, 2 = 30, 3 = 40
         public int ScoreB { get; set; }
 
-        public override string ToString() => $"{ScoreA}-{ScoreB}";
+        public override string ToString() => $"{ScoreA}-{ScoreB}"; //Need to modify this to cope with "Advantage" in a bit
+
+        /// <summary>
+        /// Indicates whether the Set is complete, based on the present score.
+        /// </summary>
+        /// <returns>Boolean value, true if the Set is complete</returns>
+        public bool Complete() => 
+            Math.Max(ScoreA, ScoreB) >= 6 && //One of the players must have at least six points
+            Math.Abs(ScoreA - ScoreB) >= 2;  //And one of them must lead by at least two points
     }
 }

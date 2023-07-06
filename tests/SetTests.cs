@@ -1,4 +1,5 @@
 using RPPTennisScorer;
+using TennisTests.Mocks;
 
 namespace TennisTests
 {
@@ -10,6 +11,8 @@ namespace TennisTests
         {
             //NB: in xUnit, a new instance of this class is created for each test within. So you can effectively use Members and the Coinstructor as a re-usable Setup method.
         }
+
+        #region Scoring Tests
 
         [Fact]
         public void NullScoreCheck()
@@ -40,5 +43,25 @@ namespace TennisTests
             //Assert
             Assert.Equal(_expected, _actual);
         }
+
+        #endregion
+
+        #region Set Complete Tests
+
+        [Fact]
+        public void CheckThatSetIsNotCompleteWhenScoresAreTooLow()
+        {
+            //Setup
+            var _scoreA = ScoreMocks.RandomNonWinningScore();
+            var _scoreB = ScoreMocks.RandomNonWinningScore();
+
+            //Act
+            var _actual = _setUnderTest.Complete();
+
+            //Assert
+            Assert.False(_actual);
+        }
+
+        #endregion
     }
 }
