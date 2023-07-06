@@ -28,8 +28,6 @@ namespace RPPTennisScorer
             if (CurrentSet.Complete)
             {
                 CompletedSets.Add(CurrentSet);
-                //Player previousServer = CurrentSet.CurrentServer;
-                //CurrentSet = new Set() { CurrentServer = previousServer == Player.A ? Player.B : Player.A };
                 CurrentSet = new Set() { CurrentServer = GetCurrentServer };
             }
         }
@@ -52,11 +50,14 @@ namespace RPPTennisScorer
 
         public override string ToString()
         {
+            StringBuilder sb = new StringBuilder();
             Player currentServer = GetCurrentServer;
             CurrentSet.CurrentServer = currentServer;
-            foreach (Set s in CompletedSets) s.CurrentServer = currentServer; //Updates all historical Sets to the current server.
-            StringBuilder sb = new StringBuilder();
-            foreach (Set s in CompletedSets) sb.Append($"{s.ToString()} ");
+            foreach (Set s in CompletedSets)
+            {
+                s.CurrentServer = currentServer; //Updates all historical Sets to the current server.
+                sb.Append($"{s.ToString()} ");
+            }
             sb.Append(CurrentSet.ToString());
             return sb.ToString();
         }
