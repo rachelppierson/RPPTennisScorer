@@ -40,7 +40,7 @@ namespace RPPTennisScorer
                 CurrentGame = new Game();
             }
         }
-        public string GamesWonDescription => $"{GamesWonA}-{GamesWonB}";
+        public string GamesWonDescription => CurrentServer == Player.A ? $"{GamesWonA}-{GamesWonB}" : $"{GamesWonB}-{GamesWonA}";
 
         public string CurrentGameDescription =>
             CurrentGame.ScoreA == 0 && CurrentGame.ScoreB == 0

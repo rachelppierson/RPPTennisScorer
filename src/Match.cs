@@ -21,7 +21,14 @@ namespace RPPTennisScorer
         public int SetsWonB => CompletedSets.Where(s => s.GamesWonA < s.GamesWonB).Count();
 
 
-        internal void AddPointForPlayer(Player player) => CurrentSet.AddPointForPlayer(player);
+        internal void AddPointForPlayer(Player player) { 
+            CurrentSet.AddPointForPlayer(player);
+            if (CurrentSet.Complete)
+            {
+                CompletedSets.Add(CurrentSet);
+                CurrentSet = new Set();
+            }
+        }
 
         internal void ScoreMatch(string pointsString)
         {
