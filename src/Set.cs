@@ -11,9 +11,6 @@ namespace RPPTennisScorer
         public int ScoreA { get; set; }
         public int ScoreB { get; set; }
 
-        public override string ToString()
-        {
-            return $"{ScoreA}-{ScoreB}";
-        }
+        public override string ToString() => $"{ScoreA}-{ScoreB}";
     }
 }
